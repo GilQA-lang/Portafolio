@@ -2,7 +2,9 @@
 
 Sitio web personal de **Gilkeira Pereira**, Quality Engineer con 14+ años de experiencia.
 
-Hospedado en GitHub Pages: `https://gilqa-lang.github.io/portafolio/`
+Hospedado en GitHub Pages: `https://gilqa-lang.github.io/Portafolio/` — repo: `github.com/GilQA-lang/Portafolio`
+(⚠ la **P** va en mayúscula: GitHub Pages distingue mayúsculas en la ruta, y de ahí dependen las
+URL de `og:image` y `og:url` del `index.html`.)
 
 ## Estructura
 
