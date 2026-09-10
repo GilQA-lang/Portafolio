@@ -30,9 +30,9 @@ Para actualizar el CV: reemplazar `Gilkeira_Pereira_CV_2026_v4.pdf` con la versi
 
 ## Datos de los logros
 
-Las cifras de la sección **Logros** no se editan a ojo: su respaldo (fórmula, antes/después,
-período, fuente y quién lo valida) vive en `../EVIDENCIAS-LOGROS.md`. **Regla: ninguna cifra
-entra al sitio sin su ficha completa.**
+Las cifras de la sección **Logros** no se editan a ojo: cada una tiene su respaldo documentado
+—fórmula, antes/después, período, fuente y quién puede validarla— **fuera de este repositorio**.
+**Regla: ninguna cifra entra al sitio sin ese respaldo completo.**
 
 Los mini-gráficos de cada tarjeta se generan solos desde los atributos del HTML:
 
@@ -44,8 +44,8 @@ Los mini-gráficos de cada tarjeta se generan solos desde los atributos del HTML
 
 ### Cuando el valor absoluto no es publicable
 
-Algunas cifras son desempeño interno de la empresa y **no van al sitio** (ver la tabla
-*público / reservado* en `../EVIDENCIAS-LOGROS.md`). En esos casos el gráfico dibuja la
+Algunas cifras son desempeño interno de la empresa y **no van al sitio**: para esas, lo que se
+publica es la **relación** y no el valor absoluto. En esos casos el gráfico dibuja la
 **proporción** y se le apagan los números — si no, el dato que se sacó del texto queda visible
 en la barra **y en el código fuente**, que cualquiera lee con Ctrl+U:
 
