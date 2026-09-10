@@ -1,0 +1,10 @@
+# El respaldo de versiones anteriores NO se publica: contiene cifras que se
+# retiraron a propósito (ver la tabla público/reservado en EVIDENCIAS-LOGROS.md).
+_backup/
+
+# Temporales y basura del sistema
+*.bak
+*.tmp
+Thumbs.db
+desktop.ini
+.DS_Store

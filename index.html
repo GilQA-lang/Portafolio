@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gilkeira Pereira — Quality Engineer &amp; Líder Técnica QA</title>
+<meta name="description" content="Quality Engineer con 14+ años de experiencia. Líder técnica de calidad, especialista en automatización con Playwright, TypeScript y Azure DevOps. Certificada ISTQB CTFL-AT y PSM I.">
+<meta name="author" content="Gilkeira Pereira">
+<meta name="theme-color" content="#0b1017">
+
+<!-- Vista previa al compartir el enlace (LinkedIn, WhatsApp, Slack).
+     ⚠ og:url y og:image deben ser URL ABSOLUTAS: si publicás en otro dominio,
+     actualizá las dos o la vista previa no carga la imagen. -->
+<meta property="og:type" content="profile">
+<meta property="og:locale" content="es_PE">
+<meta property="og:site_name" content="Gilkeira Pereira — Quality Engineer">
+<meta property="og:title" content="Gilkeira Pereira — Quality Engineer &amp; Líder Técnica QA">
+<meta property="og:description" content="14+ años en aseguramiento de calidad. Lidero un equipo de 5 personas sobre 4 proyectos. Automatización con Playwright y TypeScript, ISTQB CTFL-AT y PSM I.">
+<meta property="og:url" content="https://gilqa-lang.github.io/portafolio/">
+<meta property="og:image" content="https://gilqa-lang.github.io/portafolio/foto-gilkeira.jpg">
+<meta property="og:image:alt" content="Retrato de Gilkeira Pereira">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gilkeira Pereira — Quality Engineer &amp; Líder Técnica QA">
+<meta name="twitter:description" content="14+ años en aseguramiento de calidad. Automatización con Playwright y TypeScript, ISTQB CTFL-AT y PSM I.">
+<meta name="twitter:image" content="https://gilqa-lang.github.io/portafolio/foto-gilkeira.jpg">
+
+<!-- Favicon inline: sin archivo externo, el sitio sigue siendo autocontenido -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1017'/%3E%3Ctext x='32' y='43' font-family='Segoe UI,Arial,sans-serif' font-size='30' font-weight='800' fill='%2322d3ee' text-anchor='middle'%3EGP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg-0: #0b1017;
+    --bg-1: #111823;
+    --bg-2: #17202e;
+    --bg-3: #1e2939;
+    --border: #2a3446;
+    --text: #e8ecf3;
+    --text-dim: #a3adc2;
+    --text-mute: #7b859c;
+    --accent: #22d3ee;
+    --accent-2: #4a9eff;
+    --accent-3: #a78bfa;
+    --glow: 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent), 0 18px 48px -18px color-mix(in srgb, var(--accent) 45%, transparent);
+    --success: #22d3a4;
+    --warning: #ffb547;
+    --gradient: linear-gradient(120deg, #22d3ee 0%, #4a9eff 52%, #a78bfa 100%);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-0);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: var(--bg-0); }
+
+  /* Background decoration */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 15% -10%, rgba(34, 211, 238, 0.11), transparent 55%),
+      radial-gradient(ellipse 600px 500px at 85% 30%, rgba(167, 139, 250, 0.085), transparent 55%),
+      radial-gradient(ellipse 700px 400px at 50% 100%, rgba(106, 159, 216, 0.045), transparent 60%),
+      linear-gradient(rgba(148, 170, 200, 0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 170, 200, 0.028) 1px, transparent 1px);
+    background-size: auto, auto, auto, 46px 46px, 46px 46px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(6, 9, 18, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(38, 48, 74, 0.5);
+  }
+  .nav-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 8px; align-items: center; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+  .nav-cv {
+    background: var(--accent);
+    color: var(--bg-0) !important;
+    font-weight: 600 !important;
+  }
+  .nav-cv:hover { background: #62d0e8 !important; }
+  .mobile-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; }
+
+  /* Layout */
+  section { padding: 100px 32px; max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .section-sub {
+    color: var(--text-dim);
+    font-size: 17px;
+    max-width: 700px;
+    margin-bottom: 48px;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 32px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: rgba(34, 211, 164, 0.1);
+    border: 1px solid rgba(34, 211, 164, 0.3);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--success);
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+  .hero-status::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--success);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 {
+    font-size: clamp(38px, 6.5vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero h1 .gradient {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-role {
+    font-size: clamp(18px, 2.2vw, 22px);
+    color: var(--text-dim);
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+  .hero-desc {
+    font-size: clamp(15px, 1.4vw, 17px);
+    color: var(--text-dim);
+    max-width: 720px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .hero-desc strong { color: var(--text); font-weight: 600; }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg-0);
+  }
+  .btn-primary { box-shadow: 0 10px 30px -14px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .btn-primary:hover { background: #67e2f7; transform: translateY(-2px); box-shadow: 0 16px 36px -14px color-mix(in srgb, var(--accent) 85%, transparent); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .stat .num {
+    font-size: clamp(20px, 2.7vw, 30px);
+    font-weight: 800;
+    color: var(--text);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat .lbl { color: var(--text-dim); font-size: 13px; }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .about p { color: var(--text-dim); font-size: 16px; margin-bottom: 20px; line-height: 1.8; }
+  .about strong { color: var(--text); font-weight: 600; }
+  .about-highlights {
+    display: grid;
+    gap: 16px;
+  }
+  .highlight {
+    padding: 24px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.2s;
+  }
+  .highlight:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .highlight .h-title { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .highlight .h-title::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .highlight p { color: var(--text-dim); font-size: 14px; margin: 0; }
+
+  /* Achievements */
+  .achievements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .ach-card {
+    padding: 28px;
+    background: linear-gradient(168deg, var(--bg-2) 0%, var(--bg-1) 62%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 14px 34px -26px #000;
+    transition: transform .25s cubic-bezier(.2,.7,.3,1), border-color .25s, box-shadow .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ach-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gradient);
+    opacity: .32;
+    transition: opacity .3s;
+  }
+  .ach-card:hover {
+    transform: translateY(-5px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: var(--glow), 0 22px 44px -28px #000;
+  }
+  .ach-card:hover::before { opacity: 1; }
+  .ach-num {
+    font-size: clamp(26px, 3.4vw, 34px);
+    font-weight: 800;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* --- Hero en dos columnas con retrato --- */
+  .hero { flex-direction: column; justify-content: center; align-items: stretch; }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 64px;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-content { max-width: 720px; }
+  .hero-photo { margin: 0; position: relative; }
+  .hero-photo img {
+    display: block; width: 100%; height: auto;
+    border-radius: 20px;
+    border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+    box-shadow: var(--glow), 0 30px 60px -30px #000;
+    filter: saturate(0.96) contrast(1.03);
+    /* funde el borde inferior con el fondo del sitio */
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, rgba(0,0,0,.55) 100%);
+            mask-image: linear-gradient(to bottom, #000 72%, rgba(0,0,0,.55) 100%);
+  }
+  .hero-photo::after {
+    content: ''; position: absolute; inset: 0; border-radius: 20px; pointer-events: none;
+    background: linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--accent) 10%, transparent) 100%);
+  }
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+    .hero-photo { max-width: 240px; order: -1; }
+  }
+
+  /* --- Diagrama del método: flujo de 5 etapas --- */
+  .flow-wrap { margin-top: 56px; }
+  .flow-cap {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--text-mute); margin-bottom: 20px;
+  }
+  .flow { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; }
+  .flow-step {
+    flex: 1 1 170px; min-width: 0; padding: 18px 16px;
+    background: var(--bg-1); border: 1px solid var(--border);
+    border-radius: 14px; position: relative;
+  }
+  .flow-step + .flow-step { margin-left: 26px; }
+  .flow-step + .flow-step::before {
+    content: ''; position: absolute; left: -22px; top: 50%;
+    width: 18px; height: 1px; background: var(--border);
+  }
+  .flow-step + .flow-step::after {
+    content: ''; position: absolute; left: -8px; top: 50%;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+    transform: translateY(-2px); opacity: .55;
+  }
+  .flow-n {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    color: var(--accent); display: block; margin-bottom: 8px;
+  }
+  .flow-t { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 5px; line-height: 1.35; }
+  .flow-d { font-size: 12.5px; color: var(--text-mute); line-height: 1.5; }
+  .flow-step.is-out { border-color: color-mix(in srgb, var(--accent) 34%, var(--border)); background: var(--bg-2); }
+  @media (max-width: 860px) {
+    .flow { flex-direction: column; }
+    .flow-step + .flow-step { margin-left: 0; margin-top: 26px; }
+    .flow-step + .flow-step::before { left: 50%; top: -22px; width: 1px; height: 18px; }
+    .flow-step + .flow-step::after { left: 50%; top: -8px; transform: translateX(-2px); }
+  }
+
+  /* --- Mini-gráficos de logro: dumbbell antes -> hoy (1 hue + gris de contexto) --- */
+  .viz { --viz-mark: #2f9fbb; --viz-ctx: #55617a; margin: 16px 0 4px; }
+  .viz svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .viz .viz-bar-ctx { fill: var(--viz-ctx); }
+  .viz .viz-bar-now { fill: url(#vizGrad); }
+  .viz rect { transition: width .9s cubic-bezier(.2,.75,.25,1); }
+  @media (prefers-reduced-motion: reduce) { .viz rect { transition: none; } }
+  .viz .viz-lbl { font-size: 10.5px; font-weight: 600; fill: var(--text-mute); letter-spacing: .03em; text-transform: uppercase; }
+  .viz .viz-val { font-size: 12px; font-weight: 700; fill: var(--text-dim); font-variant-numeric: tabular-nums; }
+  .viz .viz-val.now { fill: var(--text); }
+  .ach-card:hover .viz .viz-bar-now { fill: #3fb0cc; }
+  .viz .viz-bar-now { transition: fill .2s; }
+
+  .ach-title { font-weight: 600; margin-bottom: 8px; color: var(--text); }
+  .ach-desc { color: var(--text-dim); font-size: 14px; line-height: 1.6; }
+  .ach-desc em { color: var(--text); font-style: normal; font-weight: 600; }
+
+  /* Logro destacado: el diferencial va a lo ancho y sin cifra */
+  .ach-card.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+    padding: 32px;
+  }
+  .ach-card.featured::before { opacity: 1; height: 4px; }
+  .ach-card.featured { box-shadow: var(--glow), 0 26px 60px -34px #000; }
+  .ach-card.featured .ach-title { font-size: 21px; margin-bottom: 10px; }
+  .ach-card.featured .ach-desc { font-size: 15px; max-width: 68ch; }
+  .ach-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+    box-shadow: 0 0 22px -6px color-mix(in srgb, var(--accent) 55%, transparent);
+    padding: 5px 11px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  /* Skills */
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+  .skill-group {
+    padding: 28px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.2s;
+  }
+  .skill-group:hover { border-color: rgba(0, 217, 255, 0.4); }
+  .skill-group h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+  }
+  .skill-group h3 .icon {
+    width: 36px; height: 36px;
+    background: rgba(0, 217, 255, 0.1);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    font-size: 18px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    padding: 6px 12px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.2s;
+  }
+  .tag:hover { color: var(--accent); border-color: var(--accent); }
+  .tag.primary { background: rgba(0, 217, 255, 0.1); border-color: rgba(0, 217, 255, 0.3); color: var(--accent); }
+
+  /* Stack */
+  .stack-section { background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); max-width: none; padding-left: 0; padding-right: 0; }
+  .stack-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .stack-item {
+    padding: 20px 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .stack-item:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .stack-note { color: var(--text-mute); font-size: 13px; margin-top: 24px; font-style: italic; }
+
+  /* Experience Timeline */
+  .timeline { position: relative; padding-left: 32px; border-left: 2px solid var(--border); margin-left: 8px; }
+  .exp-item { position: relative; padding-bottom: 48px; }
+  .exp-item:last-child { padding-bottom: 0; }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -41px;
+    top: 6px;
+    width: 16px; height: 16px;
+    background: var(--bg-0);
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg-0);
+  }
+  .exp-date {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .exp-role { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .exp-company { color: var(--text-dim); font-size: 15px; margin-bottom: 16px; }
+  .exp-company .sep { color: var(--text-mute); margin: 0 8px; }
+  .exp-desc { color: var(--text-dim); font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
+  .exp-achievements { display: grid; gap: 10px; }
+  .exp-ach {
+    padding-left: 20px;
+    position: relative;
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .exp-ach::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .exp-ach strong { color: var(--text); font-weight: 600; }
+
+  .prev-exp {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  .prev-exp h4 { margin-bottom: 16px; font-size: 15px; color: var(--text-dim); font-weight: 500; }
+  .prev-exp ul { list-style: none; display: grid; gap: 10px; }
+  .prev-exp li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 14px;
+    background: var(--bg-2);
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .prev-exp li .name { color: var(--text); font-weight: 500; }
+  .prev-exp li .meta { color: var(--text-mute); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+  /* Tools */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .tool-card {
+    padding: 28px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.2s;
+  }
+  .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .tool-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .tool-title { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
+  .tool-desc { color: var(--text-dim); font-size: 14px; line-height: 1.7; }
+
+  /* Education & Certs */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .edu-block h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .edu-block h3 .icon {
+    width: 36px; height: 36px;
+    background: rgba(0, 217, 255, 0.1);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    font-size: 18px;
+  }
+  .edu-list { display: grid; gap: 12px; }
+  .edu-item {
+    padding: 18px 20px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.2s;
+  }
+  .edu-item:hover { border-color: var(--accent); }
+  .edu-item .name { font-weight: 600; margin-bottom: 4px; font-size: 15px; }
+  .edu-item .place { color: var(--text-dim); font-size: 13px; }
+  .edu-item .year { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 12px; margin-left: 8px; }
+  .edu-item.featured { border-color: rgba(0, 217, 255, 0.3); background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(74, 158, 255, 0.05)); }
+
+  /* Contact */
+  .contact-section {
+    text-align: center;
+    padding: 100px 32px;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+    max-width: none;
+    margin: 0;
+  }
+  .contact-inner { max-width: 700px; margin: 0 auto; }
+  .contact-section h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .contact-section p { color: var(--text-dim); font-size: 17px; margin-bottom: 40px; }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .contact-link.primary { background: var(--accent); color: var(--bg-0); border-color: var(--accent); }
+  .contact-link.primary:hover { background: #00b8db; color: var(--bg-0); }
+
+  /* Footer */
+  footer {
+    padding: 32px;
+    text-align: center;
+    color: var(--text-mute);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-0);
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .nav-links a:not(.nav-cv) { display: none; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 64px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .nav-wrap { padding: 14px 20px; }
+    .prev-exp li { flex-direction: column; gap: 4px; }
+  }
+
+  /* Fade-in animation */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="#top" class="logo">GP.</a>
+    <div class="nav-links">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#logros">Logros</a>
+      <a href="#competencias">Competencias</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#herramientas">Herramientas</a>
+      <a href="#contacto">Contacto</a>
+      <a href="Gilkeira_Pereira_CV_2026_v4.pdf" download class="nav-cv">Descargar CV</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+  <div class="hero-content">
+    <div class="hero-status">Disponible para nuevos proyectos · Remoto, híbrido o presencial</div>
+    <h1>Gilkeira Pereira<br><span class="gradient">Quality Engineer</span></h1>
+    <div class="hero-role">Líder Técnica de Calidad y Pruebas de Software · Lima, Perú</div>
+    <p class="hero-desc">
+      Ingeniera de Sistemas con <strong>más de 14 años de experiencia</strong> en aseguramiento de calidad de software. Actualmente lidero un equipo de 5 personas sobre 4 proyectos activos con alcance transversal. Especialista en <strong>estrategia de pruebas basada en riesgo</strong>, <strong>automatización end-to-end con Playwright y TypeScript</strong>, validación de servicios REST y bases de datos, y aseguramiento de calidad en flujos CI/CD sobre Azure DevOps. Certificada <strong>ISTQB CTFL-AT, CTFL</strong> y <strong>Professional Scrum Master I</strong>.
+    </p>
+    <div class="hero-cta">
+      <a href="Gilkeira_Pereira_CV_2026_v4.pdf" download class="btn btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Descargar CV
+      </a>
+      <a href="#contacto" class="btn btn-outline">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contáctame
+      </a>
+    </div>
+  </div>
+    <figure class="hero-photo">
+      <img src="foto-gilkeira.jpg" width="760" height="950"
+           alt="Retrato de Gilkeira Pereira, Quality Engineer" loading="eager" decoding="async">
+    </figure>
+  </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="num">14+</div><div class="lbl">Años de experiencia</div></div>
+      <div class="stat"><div class="num">5</div><div class="lbl">Personas lideradas</div></div>
+      <div class="stat"><div class="num">10×&nbsp;menos</div><div class="lbl">Deuda técnica a la entrega</div></div>
+      <div class="stat"><div class="num">3&nbsp;×&nbsp;4</div><div class="lbl">Navegadores × idiomas, en paralelo</div></div>
+    </div>
+</section>
+
+<section id="sobre-mi">
+  <div class="section-tag">// sobre mí</div>
+  <h2 class="section-title">Estrategia, liderazgo y automatización de calidad</h2>
+  <div class="about-grid">
+    <div class="about">
+      <p>Diseñé y construí el <strong>método QA transversal del área</strong>, que convierte criterios de aceptación en casos de prueba ejecutables y hoy opera sobre dos productos con aislamiento estructural entre clientes.</p>
+      <p>Mi trayectoria abarca <strong>banca, seguros, telecomunicaciones, retail y servicios automotrices</strong>, en proyectos nacionales e internacionales, bajo marcos ágiles Scrum y Kanban.</p>
+      <p>Trabajo bajo el enfoque <strong>Shift-Left Testing</strong>, elevando la calidad desde la definición de requisitos y no solo desde la ejecución. Aplico técnicas ISTQB declaradas caso a caso y sostengo trazabilidad completa desde el criterio de aceptación.</p>
+    </div>
+    <div class="about-highlights">
+      <div class="highlight">
+        <div class="h-title">Enfoque técnico</div>
+        <p>Arquitectura de automatización en capas (gTAA), DDT + KDT + BDD con Gherkin, y verificación de la solución de automatización bajo ISTQB CTAL-TAE.</p>
+      </div>
+      <div class="highlight">
+        <div class="h-title">Liderazgo</div>
+        <p>Mentoría técnica, distribución de tareas, aseguramiento del cumplimiento metodológico y comunicación con niveles ejecutivos.</p>
+      </div>
+      <div class="highlight">
+        <div class="h-title">Ingeniería de soporte</div>
+        <p>Herramientas internas sin dependencias externas: Node.js, Python, PowerShell y generación programática de artefactos.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flow-wrap">
+    <div class="flow-cap">// el método, de punta a punta</div>
+    <div class="flow">
+      <div class="flow-step">
+        <span class="flow-n">01</span>
+        <div class="flow-t">Criterio de aceptación</div>
+        <div class="flow-d">El insumo real del negocio. Nada entra al método sin él.</div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-n">02</span>
+        <div class="flow-t">Oráculo y reglas</div>
+        <div class="flow-d">Técnica ISTQB declarada caso a caso y reglas de completitud para no dejar huecos.</div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-n">03</span>
+        <div class="flow-t">Matriz de casos</div>
+        <div class="flow-d">Generación asistida, en el formato que Azure Test Plans espera.</div>
+      </div>
+      <div class="flow-step">
+        <span class="flow-n">04</span>
+        <div class="flow-t">Automatización</div>
+        <div class="flow-d">Playwright + TypeScript. Cada escenario, en 3 navegadores y 4 idiomas.</div>
+      </div>
+      <div class="flow-step is-out">
+        <span class="flow-n">05</span>
+        <div class="flow-t">Evidencia trazable</div>
+        <div class="flow-d">Cada resultado vuelve al criterio que lo originó. Eso es la cobertura.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="logros">
+  <div class="section-tag">// logros principales</div>
+  <h2 class="section-title">Impacto medible en calidad</h2>
+  <p class="section-sub">Métricas de entrega comparadas entre el proyecto anterior y el actual.</p>
+  <div class="achievements">
+
+    <div class="ach-card featured">
+      <div class="ach-badge">El cambio de fondo</div>
+      <div class="ach-title">Desarrollo ejecuta las pruebas antes de entregar</div>
+      <div class="ach-desc">La automatización que construí dejó de ser una herramienta de QA: Desarrollo hace con ella su primera corrida y corrige antes de la entrega. Shift-Left en el proceso, no en el discurso — y la causa común detrás del resto de las cifras de esta sección.</div>
+    </div>
+
+    <div class="ach-card">
+      <div class="ach-num">10× menos</div>
+      <div class="viz" data-a="10" data-b="1" data-unit="(proporción)" data-la="Antes" data-lb="Hoy"></div>
+      <div class="ach-title">Deuda técnica a la fecha de entrega</div>
+      <div class="ach-desc">Los defectos pendientes al cierre de la entrega se redujeron a menos de una décima parte respecto del proyecto anterior.</div>
+    </div>
+
+    <div class="ach-card">
+      <div class="ach-num">2 pasadas</div>
+      <div class="viz" data-a="100" data-b="40" data-hide-values="1" data-alt="Los ciclos de prueba por ítem se redujeron a menos de la mitad." data-la="Antes" data-lb="Hoy"></div>
+      <div class="ach-title">Ciclos de prueba por ítem</div>
+      <div class="ach-desc">Menos de la mitad de los ciclos que requería antes: hoy un ítem se resuelve en dos pasadas, con corrección tangible en cada una.</div>
+    </div>
+
+    <div class="ach-card">
+      <div class="ach-num">Por bloque</div>
+      <div class="ach-title">La unidad de medida de los defectos cambió</div>
+      <div class="ach-desc">Antes los defectos se contaban <em>por ítem</em> y ninguno pasaba limpio. Hoy se cuentan <em>por bloque completo</em> —varios ítems juntos— y algunos bloques cierran sin ninguno, con mayor volumen de entregas que antes.</div>
+    </div>
+
+    <div class="ach-card">
+      <div class="ach-num">40 → 10</div>
+      <div class="viz" data-a="40" data-b="10" data-unit="casos" data-la="Antes" data-lb="Hoy"></div>
+      <div class="ach-title">Mayor recorrido en menor tiempo</div>
+      <div class="ach-desc">Un mismo ítem pasó de 40 casos a 10 escenarios, con más cobertura: análisis de las técnicas aplicadas y reglas de completitud, embebidas en la automatización para que no dependan de quién ejecute.</div>
+    </div>
+
+    <div class="ach-card">
+      <div class="ach-num">12×</div>
+      <div class="viz" data-a="1" data-b="12" data-unit="configuraciones" data-la="Antes" data-lb="Hoy"></div>
+      <div class="ach-title">Configuraciones por escenario</div>
+      <div class="ach-desc">Cada escenario corre en 3 navegadores y 4 idiomas en simultáneo: 120 ejecuciones donde antes había 40 manuales sobre una sola configuración.</div>
+    </div>
+
+    <div class="ach-card">
+      <div class="ach-num">&lt; 5 min</div>
+      <div class="viz" data-a="60" data-b="5" data-unit="minutos aprox." data-la="Antes" data-lb="Hoy"></div>
+      <div class="ach-title">Carga de casos en Azure Test Plans</div>
+      <div class="ach-desc">Lo que era una carga manual de casi una hora por entregable hoy toma minutos, con la matriz en el formato que Azure espera y corrección en bloque. Tiempo devuelto a todo el equipo, en cada iteración.</div>
+    </div>
+
+    <div class="ach-card">
+      <div class="ach-num">4 h → 1 h</div>
+      <div class="viz" data-a="4" data-b="1" data-unit="horas" data-la="Antes" data-lb="Hoy"></div>
+      <div class="ach-title">Elaboración de la matriz de casos</div>
+      <div class="ach-desc">Por entregable, mediante generación asistida a partir de los criterios de aceptación.</div>
+    </div>
+
+    <div class="ach-card">
+      <div class="ach-num">Método</div>
+      <div class="ach-title">Método QA transversal del área</div>
+      <div class="ach-desc">Convierte criterios de aceptación en casos ejecutables con técnica ISTQB declarada, y elimina la variabilidad entre analistas.</div>
+    </div>
+
+  </div>
+</section>
+
+<section id="competencias">
+  <div class="section-tag">// competencias técnicas</div>
+  <h2 class="section-title">Áreas de dominio</h2>
+  <p class="section-sub">Competencias organizadas por foco de trabajo.</p>
+  <div class="skill-groups">
+    <div class="skill-group">
+      <h3><span class="icon">⚡</span> Estrategia y liderazgo</h3>
+      <div class="skill-tags">
+        <span class="tag">Test strategy</span>
+        <span class="tag">Test planning</span>
+        <span class="tag">Gestión de riesgos</span>
+        <span class="tag">Quality coaching</span>
+        <span class="tag">Mentoría técnica</span>
+        <span class="tag">Reportes gerenciales</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3><span class="icon">🧪</span> Diseño y ejecución</h3>
+      <div class="skill-tags">
+        <span class="tag primary">ISTQB</span>
+        <span class="tag">Funcionales</span>
+        <span class="tag">Regresión</span>
+        <span class="tag">Smoke</span>
+        <span class="tag">UAT</span>
+        <span class="tag">End-to-end</span>
+        <span class="tag">Exploratorias</span>
+        <span class="tag">Cross-browser</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3><span class="icon">🤖</span> Automatización</h3>
+      <div class="skill-tags">
+        <span class="tag primary">Playwright</span>
+        <span class="tag primary">TypeScript</span>
+        <span class="tag">Page Object Model</span>
+        <span class="tag">DDT</span>
+        <span class="tag">KDT</span>
+        <span class="tag">BDD</span>
+        <span class="tag">Gherkin</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3><span class="icon">🔌</span> Servicios y BD</h3>
+      <div class="skill-tags">
+        <span class="tag">REST APIs</span>
+        <span class="tag">Postman</span>
+        <span class="tag">Microservicios</span>
+        <span class="tag">SQL</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Docker</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3><span class="icon">📊</span> Performance</h3>
+      <div class="skill-tags">
+        <span class="tag primary">JMeter</span>
+        <span class="tag">k6</span>
+        <span class="tag">Load testing</span>
+        <span class="tag">Spike testing</span>
+        <span class="tag">Soak testing</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3><span class="icon">⚙️</span> CI/CD y DevOps</h3>
+      <div class="skill-tags">
+        <span class="tag primary">Azure DevOps</span>
+        <span class="tag">Azure Test Plans</span>
+        <span class="tag">Azure REST API</span>
+        <span class="tag">Git</span>
+        <span class="tag">GitHub</span>
+        <span class="tag">Pipelines</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3><span class="icon">🎯</span> Trazabilidad y defectos</h3>
+      <div class="skill-tags">
+        <span class="tag">Taxonomía de hallazgos</span>
+        <span class="tag">Ciclo de vida del defecto</span>
+        <span class="tag">KPI de calidad</span>
+        <span class="tag">Dashboards</span>
+        <span class="tag">Jira</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <h3><span class="icon">💻</span> Ingeniería de soporte</h3>
+      <div class="skill-tags">
+        <span class="tag">Node.js</span>
+        <span class="tag">Python</span>
+        <span class="tag">PowerShell</span>
+        <span class="tag">JSON Schema</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stack-section">
+  <div class="stack-inner" style="padding-top: 100px; padding-bottom: 100px;">
+    <div class="section-tag">// stack tecnológico</div>
+    <h2 class="section-title">Stack actual de trabajo</h2>
+    <p class="section-sub">Herramientas que uso día a día.</p>
+    <div class="stack-grid">
+      <div class="stack-item">Claude Code</div>
+      <div class="stack-item">Playwright</div>
+      <div class="stack-item">TypeScript</div>
+      <div class="stack-item">Node.js</div>
+      <div class="stack-item">Python</div>
+      <div class="stack-item">PowerShell</div>
+      <div class="stack-item">AWS</div>
+      <div class="stack-item">Azure DevOps</div>
+      <div class="stack-item">Git & GitHub</div>
+      <div class="stack-item">VS Code</div>
+      <div class="stack-item">Docker</div>
+      <div class="stack-item">JMeter</div>
+      <div class="stack-item">Gherkin/BDD</div>
+      <div class="stack-item">Postman</div>
+      <div class="stack-item">SQL/PostgreSQL</div>
+    </div>
+    <p class="stack-note">Experiencia previa con: Cypress, Selenium, Selenium IDE, Jenkins, GitHub Actions, HP ALM (Quality Center), Rational, OS Ticket, pruebas móviles.</p>
+  </div>
+</section>
+
+<section id="experiencia">
+  <div class="section-tag">// experiencia profesional</div>
+  <h2 class="section-title">Trayectoria</h2>
+  <p class="section-sub">14+ años en QA, con roles de análisis, consultoría, arquitectura y liderazgo técnico.</p>
+
+  <div class="timeline">
+    <div class="exp-item">
+      <div class="exp-date">07/2023 — Actualidad</div>
+      <div class="exp-role">Analista de Calidad Nivel III (QA/QE)</div>
+      <div class="exp-company">T-ID Solutions SAC <span class="sep">·</span> Lima, Perú (Híbrido)</div>
+      <p class="exp-desc">Responsable de la estrategia de pruebas y del aseguramiento de la calidad end-to-end en proyectos internacionales y bandera. Lidero un equipo de <strong>5 personas</strong> con rol transversal sobre proyectos multi-módulo; actualmente 4 proyectos activos en paralelo.</p>
+      <div class="exp-achievements">
+        <div class="exp-ach">Diseñé y construí el <strong>método QA transversal</strong> del área, que hoy opera sobre dos productos con aislamiento estructural entre clientes.</div>
+        <div class="exp-ach">Entregué <strong>150 casos de prueba aprobados</strong> sobre 13 work items en tres iteraciones, con trazabilidad completa a criterios de aceptación.</div>
+        <div class="exp-ach">Construí una <strong>suite de autoverificación</strong> del propio marco de automatización, bajo ISTQB CTAL-TAE.</div>
+        <div class="exp-ach">Detecté y corregí un <strong>fallo silencioso de clasificación</strong> en el pipeline de generación, rediseñando la resolución a un catálogo de perfiles.</div>
+        <div class="exp-ach">Desarrollé el <strong>empaquetador de entregas</strong> del área con manifiesto SHA-256 y auditoría anti-secretos. Estrenado en producción.</div>
+        <div class="exp-ach">Automaticé con <strong>Playwright</strong> el módulo de Registro de Personas de VRS 2.0 multinavegador.</div>
+        <div class="exp-ach">Entregué el <strong>Manual de Versionamiento corporativo v1.2.0</strong> integrando 7 observaciones técnicas.</div>
+        <div class="exp-ach">Definí el modelo de <strong>pruebas de performance en cuatro fases</strong> con propuesta de migración a k6.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">02/2019 — 12/2022</div>
+      <div class="exp-role">Analista de Proyectos y SQA</div>
+      <div class="exp-company">AsisTp S.A. <span class="sep">·</span> Caracas, Venezuela</div>
+      <div class="exp-achievements">
+        <div class="exp-ach">Planifiqué, analicé y diseñé pruebas funcionales y no funcionales sobre aplicaciones corporativas.</div>
+        <div class="exp-ach">Gestioné incidencias y elaboré métricas e informes de avance para nivel ejecutivo.</div>
+        <div class="exp-ach">Administré el control de versiones y el seguimiento del gestor documental de configuración.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">05/2018 — 08/2018</div>
+      <div class="exp-role">Consultor QA</div>
+      <div class="exp-company">Caracas Hosting C.A. <span class="sep">·</span> Caracas, Venezuela</div>
+      <div class="exp-achievements">
+        <div class="exp-ach">Planifiqué y diseñé pruebas funcionales y no funcionales, gestioné el ciclo de vida de las incidencias.</div>
+        <div class="exp-ach">Levanté requerimientos directamente con usuarios y elaboré los manuales de usuario del producto.</div>
+        <div class="exp-ach">Ejecuté pruebas de performance con <strong>JMeter</strong> y validaciones de servicios con <strong>Postman</strong>.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">04/2018 — 05/2018</div>
+      <div class="exp-role">Líder QA</div>
+      <div class="exp-company">Global Resourses C.A. <span class="sep">·</span> Caracas, Venezuela</div>
+      <div class="exp-achievements">
+        <div class="exp-ach">Lideré el equipo de pruebas y coordiné con desarrollo durante una migración de plataformas.</div>
+        <div class="exp-ach">Elaboré el plan de pruebas, revisé procesos end-to-end y di seguimiento a las incidencias.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prev-exp">
+    <h4>Experiencia previa (2012 — 2018)</h4>
+    <ul>
+      <li><span class="name">Especialista QA — Banesco Seguros C.A.</span><span class="meta">12/2016 – 04/2018 · Caracas, VE</span></li>
+      <li><span class="name">Consultor Funcional / Especialista QA — SOAINT C.A.</span><span class="meta">03/2016 – 11/2016 · Caracas, VE</span></li>
+      <li><span class="name">Gerente de Sistemas / SQA — DDS Consultores C.A.</span><span class="meta">04/2014 – 03/2016 · Caracas, VE</span></li>
+      <li><span class="name">Arquitecto QA — Business Hunters C.A.</span><span class="meta">08/2013 – 04/2014 · Caracas, VE</span></li>
+      <li><span class="name">Analista QA II — CONSIS International C.A.</span><span class="meta">12/2012 – 08/2013 · Caracas, VE</span></li>
+      <li><span class="name">Analista de Pruebas de Software — FYC Group C.A.</span><span class="meta">02/2012 – 11/2012 · Caracas, VE</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="herramientas">
+  <div class="section-tag">// herramientas y métodos desarrollados</div>
+  <h2 class="section-title">Ingeniería propia</h2>
+  <p class="section-sub">Herramientas internas construidas desde cero para el área de calidad.</p>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-num">01 / método</div>
+      <div class="tool-title">Método QA transversal de generación de oráculos</div>
+      <div class="tool-desc">Convierte criterios de aceptación en casos de prueba ejecutables y en cuestionario de parámetros no resueltos. <strong>18 versiones documentadas, 21 reglas de diseño de oráculo, 18 reglas de escritura Gherkin, 35 scripts Node.js y 286 comprobaciones de autoverificación en 11 baterías.</strong> Multi-proyecto con aislamiento estructural.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">02 / herramienta</div>
+      <div class="tool-title">Empaquetador de entregas</div>
+      <div class="tool-desc">Interfaz local sin dependencias externas que arma el paquete de artefactos con <strong>manifiesto SHA-256 por archivo, auditoría anti-secretos</strong> y perfiles diferenciados por destinatario.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">03 / generador</div>
+      <div class="tool-title">Generador de matrices de prueba en Excel</div>
+      <div class="tool-desc">Produce la hoja importable a Azure Test Plans desde el modelo de casos, con el esperado por paso y las técnicas de diseño declaradas.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">04 / agente IA</div>
+      <div class="tool-title">Agente generador de informes ejecutivos</div>
+      <div class="tool-desc">Convierte los datos del ciclo de pruebas en un informe Word de <strong>siete secciones</strong>, con motor de IA conmutable y envío por SMTP o Microsoft Graph.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">05 / automatización</div>
+      <div class="tool-title">Automatización de carga en Azure DevOps</div>
+      <div class="tool-desc">Creación y vinculación jerárquica de tareas de calidad contra la <strong>API REST</strong>, con lectura automática de áreas e iteraciones.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">06 / seguimiento</div>
+      <div class="tool-title">Herramientas internas de seguimiento QA</div>
+      <div class="tool-desc">Reporte de avance por iteración y registro de bugs, con persistencia local y exportación a Excel formateado.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">07 / conocimiento</div>
+      <div class="tool-title">Base de conocimiento de calidad</div>
+      <div class="tool-desc"><strong>Cerca de 700 registros</strong> con índice regenerable y regla de madurez que promueve cada aprendizaje consolidado a su documento normativo.</div>
+    </div>
+  </div>
+</section>
+
+<section id="educacion">
+  <div class="section-tag">// formación</div>
+  <h2 class="section-title">Educación y certificaciones</h2>
+  <div class="edu-grid">
+    <div class="edu-block">
+      <h3><span class="icon">🎓</span> Educación</h3>
+      <div class="edu-list">
+        <div class="edu-item featured">
+          <div class="name">Ingeniera de Sistemas <span class="year">2011</span></div>
+          <div class="place">UNEXPO Luis Caballero Mejías</div>
+        </div>
+        <div class="edu-item">
+          <div class="name">Diplomado en Gerencia y Auditoría de Sistemas <span class="year">2017</span></div>
+          <div class="place">CEUJAP — Universidad José Antonio Páez</div>
+        </div>
+        <div class="edu-item">
+          <div class="name">Diplomado en Gerencia de Seguros <span class="year">2016</span></div>
+          <div class="place">Instituto Universitario de Seguros</div>
+        </div>
+        <div class="edu-item">
+          <div class="name">Diplomado en Docencia Universitaria <span class="year">2013</span></div>
+          <div class="place">UPEL Siso Martínez</div>
+        </div>
+      </div>
+    </div>
+    <div class="edu-block">
+      <h3><span class="icon">🏅</span> Certificaciones</h3>
+      <div class="edu-list">
+        <div class="edu-item featured">
+          <div class="name">ISTQB CTFL-AT (Agile Tester) <span class="year">2025</span></div>
+          <div class="place">International Software Testing Qualifications Board</div>
+        </div>
+        <div class="edu-item featured">
+          <div class="name">Professional Scrum Master I (PSM I) <span class="year">2025</span></div>
+          <div class="place">Scrum.org</div>
+        </div>
+        <div class="edu-item">
+          <div class="name">Automatización Web con Cypress <span class="year">2024</span></div>
+          <div class="place">QA Team</div>
+        </div>
+        <div class="edu-item featured">
+          <div class="name">ISTQB CTFL (Foundation Level) <span class="year">2023</span></div>
+          <div class="place">International Software Testing Qualifications Board</div>
+        </div>
+        <div class="edu-item">
+          <div class="name">Scrum Foundation <span class="year">2023</span></div>
+          <div class="place">CertiProf</div>
+        </div>
+        <div class="edu-item">
+          <div class="name">Sílabus ISTQB CTAL-TAE v2.0 (8/8 capítulos) <span class="year">2026</span></div>
+          <div class="place">Formación especializada · Test Automation Engineering</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact-section" id="contacto">
+  <div class="contact-inner">
+    <div class="section-tag">// contacto</div>
+    <h2>¿Hablamos?</h2>
+    <p>Estoy disponible para nuevos proyectos en modalidad remota, híbrida o presencial. Escríbeme y conversamos.</p>
+    <div class="contact-links">
+      <a href="mailto:gilmared@gmail.com" class="contact-link primary">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        gilmared@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/gilkeira-pereira-qe" target="_blank" rel="noopener" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"/></svg>
+        LinkedIn
+      </a>
+      <a href="tel:+51979694029" class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +51 979 694 029
+      </a>
+      <a href="Gilkeira_Pereira_CV_2026_v4.pdf" download class="contact-link">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Descargar CV
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Gilkeira Pereira · Quality Engineer · Lima, Perú</p>
+  <p style="margin-top: 8px;">Construido con HTML, CSS y hospedado en GitHub Pages</p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section > *').forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 70;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+
+<script>
+/* Comparación antes -> hoy por logro. Dos barras horizontales sobre una escala
+   común (0..max), ancladas a la izquierda y en orden temporal descendente:
+   la longitud se lee sola y no hay eje que interpretar. Una sola serie con
+   contexto en gris -> sin leyenda; ambos valores van rotulados directamente. */
+(function () {
+  var W = 300, LBL = 40, VAL = 40, BH = 9, Y1 = 12, Y2 = 32, H = 50;
+  document.querySelectorAll('.viz[data-a]').forEach(function (el) {
+    var a = parseFloat(el.dataset.a), b = parseFloat(el.dataset.b);
+    var unit = el.dataset.unit || '', la = el.dataset.la || 'Antes', lb = el.dataset.lb || 'Hoy';
+    var inner = W - LBL - (el.dataset.hideValues === '1' ? 8 : VAL);
+    var max = Math.max(a, b) || 1;
+    var wa = Math.max(3, (a / max) * inner), wb = Math.max(3, (b / max) * inner);
+    var fmt = function (v) { return (Math.round(v * 10) / 10).toLocaleString('es-PE'); };
+    /* data-hide-values="1": dibuja solo la proporción. Se usa cuando el valor
+       absoluto no es publicable y el texto de la tarjeta habla en relativo. */
+    var hide = el.dataset.hideValues === '1';
+    function row(y, w, val, lbl, cls) {
+      return '<text class="viz-lbl" x="0" y="' + (y + BH - 1) + '">' + lbl + '</text>' +
+             '<rect class="' + cls + '" x="' + LBL + '" y="' + y + '" width="' + w + '" height="' + BH + '" rx="4">' +
+                (hide ? '' : '<title>' + lbl + ': ' + fmt(val) + ' ' + unit + '</title>') + '</rect>' +
+             (hide ? '' :
+               '<text class="viz-val' + (cls === 'viz-bar-now' ? ' now' : '') + '" x="' + (LBL + w + 7) + '" y="' + (y + BH - 1) + '">' + fmt(val) + '</text>');
+    }
+    el.innerHTML =
+      '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
+        (el.dataset.alt || (la + ': ' + fmt(a) + ' ' + unit + '. ' + lb + ': ' + fmt(b) + ' ' + unit + '.')) + '">' +
+        '<defs><linearGradient id="vizGrad" x1="0" y1="0" x2="1" y2="0">' +
+          '<stop offset="0%" stop-color="#2f9fbb"/><stop offset="100%" stop-color="#3fb4cf"/>' +
+        '</linearGradient></defs>' +
+        row(Y1, wa, a, la, 'viz-bar-ctx') + row(Y2, wb, b, lb, 'viz-bar-now') +
+      '</svg>';
+    el.querySelectorAll('rect').forEach(function (r) {
+      r.dataset.w = r.getAttribute('width'); r.setAttribute('width', 0);
+    });
+  });
+
+  /* Las barras crecen al entrar en pantalla: el dato se lee como un movimiento,
+     no como una imagen fija. Sin IntersectionObserver, se pintan directo. */
+  var grow = function (el) {
+    el.querySelectorAll('rect').forEach(function (r, i) {
+      setTimeout(function () { r.setAttribute('width', r.dataset.w); }, i * 110);
+    });
+  };
+  var vizzes = document.querySelectorAll('.viz[data-a]');
+  if (!('IntersectionObserver' in window)) { vizzes.forEach(grow); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { grow(e.target); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.35 });
+  vizzes.forEach(function (el) { io.observe(el); });
+})();
+</script>
+
+</body>
+</html>
