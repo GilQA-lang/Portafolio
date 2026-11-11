@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso de estudio — Gilkeira Pereira</title>
+<meta name="description" content="Caso de estudio: un método de Quality Engineering asistido por IA, del criterio de aceptación al defecto, con evidencia en cada paso.">
+<meta name="author" content="Gilkeira Pereira">
+<meta name="theme-color" content="#0b1017">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="es_PE">
+<meta property="og:site_name" content="Gilkeira Pereira — Quality Engineer">
+<meta property="og:title" content="Caso de estudio — Quality Engineering asistido por IA">
+<meta property="og:description" content="Del criterio de aceptación al defecto: 1.849 casos trazables en 4 productos, y cómo se mejora el método con evidencia.">
+<meta property="og:url" content="https://gilqa-lang.github.io/Portafolio/caso-de-estudio.html">
+<meta property="og:image" content="https://gilqa-lang.github.io/Portafolio/foto-gilkeira.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b1017'/%3E%3Ctext x='32' y='43' font-family='Segoe UI,Arial,sans-serif' font-size='30' font-weight='800' fill='%2322d3ee' text-anchor='middle'%3EGP%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg-0: #0b1017;
+    --bg-1: #111823;
+    --bg-2: #17202e;
+    --bg-3: #1e2939;
+    --border: #2a3446;
+    --text: #e8ecf3;
+    --text-dim: #a3adc2;
+    --text-mute: #7b859c;
+    --accent: #22d3ee;
+    --accent-2: #4a9eff;
+    --accent-3: #a78bfa;
+    --glow: 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent), 0 18px 48px -18px color-mix(in srgb, var(--accent) 45%, transparent);
+    --success: #22d3a4;
+    --warning: #ffb547;
+    --gradient: linear-gradient(120deg, #22d3ee 0%, #4a9eff 52%, #a78bfa 100%);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg-0);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  ::selection { background: var(--accent); color: var(--bg-0); }
+
+  /* Background decoration */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 800px 600px at 15% -10%, rgba(34, 211, 238, 0.11), transparent 55%),
+      radial-gradient(ellipse 600px 500px at 85% 30%, rgba(167, 139, 250, 0.085), transparent 55%),
+      radial-gradient(ellipse 700px 400px at 50% 100%, rgba(106, 159, 216, 0.045), transparent 60%),
+      linear-gradient(rgba(148, 170, 200, 0.028) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 170, 200, 0.028) 1px, transparent 1px);
+    background-size: auto, auto, auto, 46px 46px, 46px 46px;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Nav */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(6, 9, 18, 0.75);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(38, 48, 74, 0.5);
+  }
+  .nav-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .nav-links { display: flex; gap: 8px; align-items: center; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+  .nav-cv {
+    background: var(--accent);
+    color: var(--bg-0) !important;
+    font-weight: 600 !important;
+  }
+  .nav-cv:hover { background: #62d0e8 !important; }
+  .mobile-toggle { display: none; background: none; border: none; color: var(--text); cursor: pointer; padding: 8px; }
+
+  /* Layout */
+  section { padding: 100px 32px; max-width: 1200px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+  .section-sub {
+    color: var(--text-dim);
+    font-size: 17px;
+    max-width: 700px;
+    margin-bottom: 48px;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 120px 32px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .hero-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: rgba(34, 211, 164, 0.1);
+    border: 1px solid rgba(34, 211, 164, 0.3);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--success);
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+  .hero-status::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--success);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .hero h1 {
+    font-size: clamp(38px, 6.5vw, 72px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+  .hero h1 .gradient {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-role {
+    font-size: clamp(18px, 2.2vw, 22px);
+    color: var(--text-dim);
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+  .hero-desc {
+    font-size: clamp(15px, 1.4vw, 17px);
+    color: var(--text-dim);
+    max-width: 720px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+  }
+  .hero-desc strong { color: var(--text); font-weight: 600; }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg-0);
+  }
+  .btn-primary { box-shadow: 0 10px 30px -14px color-mix(in srgb, var(--accent) 70%, transparent); }
+  .btn-primary:hover { background: #67e2f7; transform: translateY(-2px); box-shadow: 0 16px 36px -14px color-mix(in srgb, var(--accent) 85%, transparent); }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .stat .num {
+    font-size: clamp(20px, 2.7vw, 30px);
+    font-weight: 800;
+    color: var(--text);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat .lbl { color: var(--text-dim); font-size: 13px; }
+
+  /* About */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .about p { color: var(--text-dim); font-size: 16px; margin-bottom: 20px; line-height: 1.8; }
+  .about strong { color: var(--text); font-weight: 600; }
+  .about-highlights {
+    display: grid;
+    gap: 16px;
+  }
+  .highlight {
+    padding: 24px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.2s;
+  }
+  .highlight:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .highlight .h-title { font-weight: 600; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .highlight .h-title::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+  }
+  .highlight p { color: var(--text-dim); font-size: 14px; margin: 0; }
+
+  /* Achievements */
+  .achievements {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .ach-card {
+    padding: 28px;
+    background: linear-gradient(168deg, var(--bg-2) 0%, var(--bg-1) 62%);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.04) inset, 0 14px 34px -26px #000;
+    transition: transform .25s cubic-bezier(.2,.7,.3,1), border-color .25s, box-shadow .25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ach-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gradient);
+    opacity: .32;
+    transition: opacity .3s;
+  }
+  .ach-card:hover {
+    transform: translateY(-5px);
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
+    box-shadow: var(--glow), 0 22px 44px -28px #000;
+  }
+  .ach-card:hover::before { opacity: 1; }
+  .ach-num {
+    font-size: clamp(26px, 3.4vw, 34px);
+    font-weight: 800;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* --- Hero en dos columnas con retrato --- */
+  .hero { flex-direction: column; justify-content: center; align-items: stretch; }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 64px;
+    align-items: center;
+    width: 100%;
+  }
+  .hero-content { max-width: 720px; }
+  .hero-photo { margin: 0; position: relative; }
+  .hero-photo img {
+    display: block; width: 100%; height: auto;
+    border-radius: 20px;
+    border: 1px solid color-mix(in srgb, var(--accent) 26%, var(--border));
+    box-shadow: var(--glow), 0 30px 60px -30px #000;
+    filter: saturate(0.96) contrast(1.03);
+    /* funde el borde inferior con el fondo del sitio */
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, rgba(0,0,0,.55) 100%);
+            mask-image: linear-gradient(to bottom, #000 72%, rgba(0,0,0,.55) 100%);
+  }
+  .hero-photo::after {
+    content: ''; position: absolute; inset: 0; border-radius: 20px; pointer-events: none;
+    background: linear-gradient(160deg, transparent 55%, color-mix(in srgb, var(--accent) 10%, transparent) 100%);
+  }
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+    .hero-photo { max-width: 240px; order: -1; }
+  }
+
+  /* --- Diagrama del método: flujo de 5 etapas --- */
+  .flow-wrap { margin-top: 56px; }
+  .flow-cap {
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .06em;
+    text-transform: uppercase; color: var(--text-mute); margin-bottom: 20px;
+  }
+  .flow { display: flex; align-items: stretch; gap: 0; flex-wrap: wrap; }
+  .flow-step {
+    flex: 1 1 170px; min-width: 0; padding: 18px 16px;
+    background: var(--bg-1); border: 1px solid var(--border);
+    border-radius: 14px; position: relative;
+  }
+  .flow-step + .flow-step { margin-left: 26px; }
+  .flow-step + .flow-step::before {
+    content: ''; position: absolute; left: -22px; top: 50%;
+    width: 18px; height: 1px; background: var(--border);
+  }
+  .flow-step + .flow-step::after {
+    content: ''; position: absolute; left: -8px; top: 50%;
+    width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
+    transform: translateY(-2px); opacity: .55;
+  }
+  .flow-n {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 700;
+    color: var(--accent); display: block; margin-bottom: 8px;
+  }
+  .flow-t { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 5px; line-height: 1.35; }
+  .flow-d { font-size: 12.5px; color: var(--text-mute); line-height: 1.5; }
+  .flow-step.is-out { border-color: color-mix(in srgb, var(--accent) 34%, var(--border)); background: var(--bg-2); }
+  @media (max-width: 860px) {
+    .flow { flex-direction: column; }
+    .flow-step + .flow-step { margin-left: 0; margin-top: 26px; }
+    .flow-step + .flow-step::before { left: 50%; top: -22px; width: 1px; height: 18px; }
+    .flow-step + .flow-step::after { left: 50%; top: -8px; transform: translateX(-2px); }
+  }
+
+  /* --- Mini-gráficos de logro: dumbbell antes -> hoy (1 hue + gris de contexto) --- */
+  .viz { --viz-mark: #2f9fbb; --viz-ctx: #55617a; margin: 16px 0 4px; }
+  .viz svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .viz .viz-bar-ctx { fill: var(--viz-ctx); }
+  .viz .viz-bar-now { fill: url(#vizGrad); }
+  .viz rect { transition: width .9s cubic-bezier(.2,.75,.25,1); }
+  @media (prefers-reduced-motion: reduce) { .viz rect { transition: none; } }
+  .viz .viz-lbl { font-size: 10.5px; font-weight: 600; fill: var(--text-mute); letter-spacing: .03em; text-transform: uppercase; }
+  .viz .viz-val { font-size: 12px; font-weight: 700; fill: var(--text-dim); font-variant-numeric: tabular-nums; }
+  .viz .viz-val.now { fill: var(--text); }
+  .ach-card:hover .viz .viz-bar-now { fill: #3fb0cc; }
+  .viz .viz-bar-now { transition: fill .2s; }
+
+  .ach-title { font-weight: 600; margin-bottom: 8px; color: var(--text); }
+  .ach-desc { color: var(--text-dim); font-size: 14px; line-height: 1.6; }
+  .ach-desc em { color: var(--text); font-style: normal; font-weight: 600; }
+
+  /* Logro destacado: el diferencial va a lo ancho y sin cifra */
+  .ach-card.featured {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 100%);
+    border-color: color-mix(in srgb, var(--accent) 32%, var(--border));
+    padding: 32px;
+  }
+  .ach-card.featured::before { opacity: 1; height: 4px; }
+  .ach-card.featured { box-shadow: var(--glow), 0 26px 60px -34px #000; }
+  .ach-card.featured .ach-title { font-size: 21px; margin-bottom: 10px; }
+  .ach-card.featured .ach-desc { font-size: 15px; max-width: 68ch; }
+  .ach-badge {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 16%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 38%, transparent);
+    box-shadow: 0 0 22px -6px color-mix(in srgb, var(--accent) 55%, transparent);
+    padding: 5px 11px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+  }
+
+  /* Skills */
+  .skill-groups { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+  .skill-group {
+    padding: 28px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.2s;
+  }
+  .skill-group:hover { border-color: rgba(0, 217, 255, 0.4); }
+  .skill-group h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text);
+  }
+  .skill-group h3 .icon {
+    width: 36px; height: 36px;
+    background: rgba(0, 217, 255, 0.1);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    font-size: 18px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    padding: 6px 12px;
+    background: var(--bg-3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.2s;
+  }
+  .tag:hover { color: var(--accent); border-color: var(--accent); }
+  .tag.primary { background: rgba(0, 217, 255, 0.1); border-color: rgba(0, 217, 255, 0.3); color: var(--accent); }
+
+  /* Stack */
+  .stack-section { background: var(--bg-1); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); max-width: none; padding-left: 0; padding-right: 0; }
+  .stack-inner { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+  .stack-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+  .stack-item {
+    padding: 20px 12px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+    font-family: 'JetBrains Mono', monospace;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+  .stack-item:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .stack-note { color: var(--text-mute); font-size: 13px; margin-top: 24px; font-style: italic; }
+
+  /* Experience Timeline */
+  .timeline { position: relative; padding-left: 32px; border-left: 2px solid var(--border); margin-left: 8px; }
+  .exp-item { position: relative; padding-bottom: 48px; }
+  .exp-item:last-child { padding-bottom: 0; }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: -41px;
+    top: 6px;
+    width: 16px; height: 16px;
+    background: var(--bg-0);
+    border: 3px solid var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg-0);
+  }
+  .exp-date {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+  .exp-role { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+  .exp-company { color: var(--text-dim); font-size: 15px; margin-bottom: 16px; }
+  .exp-company .sep { color: var(--text-mute); margin: 0 8px; }
+  .exp-desc { color: var(--text-dim); font-size: 15px; line-height: 1.7; margin-bottom: 16px; }
+  .exp-achievements { display: grid; gap: 10px; }
+  .exp-ach {
+    padding-left: 20px;
+    position: relative;
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .exp-ach::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+  .exp-ach strong { color: var(--text); font-weight: 600; }
+
+  .prev-exp {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+  .prev-exp h4 { margin-bottom: 16px; font-size: 15px; color: var(--text-dim); font-weight: 500; }
+  .prev-exp ul { list-style: none; display: grid; gap: 10px; }
+  .prev-exp li {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 14px;
+    background: var(--bg-2);
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  .prev-exp li .name { color: var(--text); font-weight: 500; }
+  .prev-exp li .meta { color: var(--text-mute); font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+
+  /* Tools */
+  .tool-link { display: inline-block; margin-top: 10px; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .tool-link:hover { text-decoration: underline; }
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .tool-card {
+    padding: 28px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.2s;
+  }
+  .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .tool-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .tool-title { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
+  .tool-desc { color: var(--text-dim); font-size: 14px; line-height: 1.7; }
+
+  /* Education & Certs */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .edu-block h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .edu-block h3 .icon {
+    width: 36px; height: 36px;
+    background: rgba(0, 217, 255, 0.1);
+    border: 1px solid rgba(0, 217, 255, 0.2);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--accent);
+    font-size: 18px;
+  }
+  .edu-list { display: grid; gap: 12px; }
+  .edu-item {
+    padding: 18px 20px;
+    background: var(--bg-1);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: all 0.2s;
+  }
+  .edu-item:hover { border-color: var(--accent); }
+  .edu-item .name { font-weight: 600; margin-bottom: 4px; font-size: 15px; }
+  .edu-item .place { color: var(--text-dim); font-size: 13px; }
+  .edu-item .year { color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 12px; margin-left: 8px; }
+  .edu-item.featured { border-color: rgba(0, 217, 255, 0.3); background: linear-gradient(135deg, rgba(0, 217, 255, 0.05), rgba(74, 158, 255, 0.05)); }
+
+  /* Contact */
+  .contact-section {
+    text-align: center;
+    padding: 100px 32px;
+    background: var(--bg-1);
+    border-top: 1px solid var(--border);
+    max-width: none;
+    margin: 0;
+  }
+  .contact-inner { max-width: 700px; margin: 0 auto; }
+  .contact-section h2 {
+    font-size: clamp(32px, 5vw, 48px);
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .contact-section p { color: var(--text-dim); font-size: 17px; margin-bottom: 40px; }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 28px;
+    background: var(--bg-2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+  .contact-link.primary { background: var(--accent); color: var(--bg-0); border-color: var(--accent); }
+  .contact-link.primary:hover { background: #00b8db; color: var(--bg-0); }
+
+  /* Footer */
+  footer {
+    padding: 32px;
+    text-align: center;
+    color: var(--text-mute);
+    font-size: 13px;
+    border-top: 1px solid var(--border);
+    background: var(--bg-0);
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--accent); }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    .nav-links a:not(.nav-cv) { display: none; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 64px 20px; }
+    .hero { padding: 100px 20px 60px; }
+    .nav-wrap { padding: 14px 20px; }
+    .prev-exp li { flex-direction: column; gap: 4px; }
+  }
+
+  /* Fade-in animation */
+  .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── Caso de estudio (solo esta página) ── */
+  .cs-hero { padding: 140px 32px 40px; max-width: 1200px; margin: 0 auto; }
+  .cs-hero h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 20px; }
+  .cs-hero h1 .gradient { background: var(--gradient); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .cs-back { display: block; width: fit-content; color: var(--text-dim); text-decoration: none; font-size: 14px; margin-bottom: 24px; }
+  .cs-back:hover { color: var(--accent); }
+  .cs-lead { color: var(--text-dim); font-size: 18px; line-height: 1.7; max-width: 820px; margin-bottom: 40px; }
+  .cs-lead strong { color: var(--text); }
+  .cs-facts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .cs-fact .num { font-size: clamp(22px, 3vw, 34px); font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1; margin-bottom: 6px; }
+  .cs-fact .lbl { color: var(--text-dim); font-size: 13px; }
+  .cs-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .cs-note { margin-top: 28px; color: var(--text-dim); font-size: 16px; line-height: 1.7; max-width: 860px; }
+  .cs-note strong { color: var(--text); }
+  .cs-flow { margin-top: 8px; }
+  .cs-flow .flow-step { flex-basis: 140px; }   /* six steps fit in one row on desktop; they stack on a phone */
+  .cs-flow .flow-d em { display: block; margin-top: 8px; color: var(--accent); font-style: normal; font-size: 12px; }
+  .cs-table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 14px; background: var(--bg-1); }
+  .cs-table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.5; }
+  .cs-table th, .cs-table td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .cs-table thead th { color: var(--text-mute); font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; }
+  .cs-table tbody th { color: var(--text); font-weight: 600; min-width: 160px; }
+  .cs-table td { color: var(--text-dim); }
+  .cs-table td strong { color: var(--accent); font-weight: 600; }
+  .cs-table tbody tr:last-child th, .cs-table tbody tr:last-child td { border-bottom: 0; }
+  #mejora-continua .about-grid { align-items: start; }
+  .cs-stack { margin-top: 28px; }
+  .cs-cta { margin-top: 32px; margin-bottom: 0; }
+  @media (max-width: 900px) { .cs-facts { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) {
+    .cs-hero { padding: 110px 20px 32px; }
+    .cs-table th, .cs-table td { padding: 10px 12px; }
+    .cs-table tbody th { min-width: 120px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-wrap">
+    <a href="index.html" class="logo">GP.</a>
+    <div class="nav-links">
+      <a href="index.html#sobre-mi">Sobre mí</a>
+      <a href="index.html#logros">Logros</a>
+      <a href="index.html#herramientas">Herramientas</a>
+      <a href="index.html#contacto">Contacto</a>
+      <a href="Gilkeira_Pereira_CV_2026_v5.pdf" download class="nav-cv">Descargar CV</a>
+    </div>
+  </div>
+</nav>
+
+<header class="cs-hero" id="top">
+  <a href="index.html#herramientas" class="cs-back">← Volver al portafolio</a>
+  <div class="section-tag">// caso de estudio</div>
+  <h1>Quality Engineering asistido por IA, <span class="gradient">de punta a punta</span></h1>
+  <p class="cs-lead">Diseñé y gobierno un método que convierte los criterios de aceptación del negocio en pruebas trazables y automatizadas, con la IA como par de trabajo y una regla de fondo: <strong>nada se da por bueno sin evidencia</strong>.</p>
+  <div class="cs-facts">
+    <div class="cs-fact"><div class="num">1.849</div><div class="lbl">Casos vigentes</div></div>
+    <div class="cs-fact"><div class="num">119</div><div class="lbl">Requerimientos</div></div>
+    <div class="cs-fact"><div class="num">4</div><div class="lbl">Productos web y móviles</div></div>
+    <div class="cs-fact"><div class="num">5</div><div class="lbl">Analistas usan el método</div></div>
+  </div>
+</header>
+
+<section id="problema">
+  <div class="section-tag">// 01 · el problema</div>
+  <h2 class="section-title">Más horas no daban más calidad</h2>
+  <p class="section-sub">Un área de calidad con varios productos web y móviles, y el mismo síntoma en todos.</p>
+  <div class="about-highlights cs-cols">
+    <div class="highlight"><div class="h-title">Cada analista, a su manera</div><p>La cobertura dependía de quién tomara el ítem.</p></div>
+    <div class="highlight"><div class="h-title">Ningún ítem pasaba limpio</div><p>Cada uno necesitaba varias idas y vueltas con Desarrollo.</p></div>
+    <div class="highlight"><div class="h-title">Lo repetitivo se comía el tiempo</div><p>Armar la matriz de casos, cargarla en Azure Test Plans, rehacer evidencia.</p></div>
+    <div class="highlight"><div class="h-title">Los defectos llegaban tarde</div><p>Desarrollo los veía cuando el ítem ya estaba en manos de Calidad.</p></div>
+  </div>
+  <p class="cs-note">El problema no era de esfuerzo, sino de <strong>método</strong>.</p>
+</section>
+
+<section id="diseno">
+  <div class="section-tag">// 02 · lo que diseñé</div>
+  <h2 class="section-title">Un método común, con tres principios</h2>
+  <p class="section-sub">El mismo proceso para todos los productos.</p>
+  <div class="tools-grid">
+    <div class="tool-card">
+      <div class="tool-num">principio 1</div>
+      <div class="tool-title">El criterio de aceptación manda</div>
+      <div class="tool-desc">Lo esperado sale siempre del requisito acordado con negocio, nunca del código: si el requisito no lo dice, se pregunta. Una prueba que copia lo que hace el código da verde sobre un defecto.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">principio 2</div>
+      <div class="tool-title">La IA genera, una persona aprueba</div>
+      <div class="tool-desc">La IA (Claude Code) redacta casos y scripts; cada pieza pasa por <strong>puertas de control automáticas</strong> y por revisión humana antes de usarse.</div>
+    </div>
+    <div class="tool-card">
+      <div class="tool-num">principio 3</div>
+      <div class="tool-title">Una prueba solo «cumple» con sustento</div>
+      <div class="tool-desc">Cada paso deja su captura, la respuesta real del servicio o la consulta a la base. Sin evidencia, el caso no se da por cumplido.</div>
+    </div>
+  </div>
+</section>
+
+<section id="funcionamiento">
+  <div class="section-tag">// 03 · cómo funciona</div>
+  <h2 class="section-title">Del criterio al defecto, con un control en cada paso</h2>
+  <div class="flow-wrap cs-flow">
+    <div class="flow">
+      <div class="flow-step"><span class="flow-n">01</span><div class="flow-t">Criterio de aceptación</div><div class="flow-d">El insumo real del negocio. Nada entra sin él.</div></div>
+      <div class="flow-step"><span class="flow-n">02</span><div class="flow-t">Oráculo de pruebas</div><div class="flow-d">Técnica ISTQB declarada caso a caso y reglas de completitud. <em>Control: validación automática.</em></div></div>
+      <div class="flow-step"><span class="flow-n">03</span><div class="flow-t">Matriz de casos</div><div class="flow-d">Generación asistida, en el formato que Azure Test Plans importa.</div></div>
+      <div class="flow-step"><span class="flow-n">04</span><div class="flow-t">Automatización</div><div class="flow-d">Playwright + TypeScript, en 3 navegadores y 4 idiomas. <em>Control: cada script se revisa contra el oráculo antes de correr.</em></div></div>
+      <div class="flow-step"><span class="flow-n">05</span><div class="flow-t">Evidencia trazable</div><div class="flow-d">Cada resultado vuelve al criterio que lo originó. <em>Control: sin sustento, no cumple.</em></div></div>
+      <div class="flow-step"><span class="flow-n">06</span><div class="flow-t">Defecto</div><div class="flow-d">Lo que falla va a Azure DevOps con su evidencia. <em>Control: reglas de hallazgo.</em></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="resultados">
+  <div class="section-tag">// 04 · resultados</div>
+  <h2 class="section-title">Antes y después</h2>
+  <p class="section-sub">Métricas de entrega comparadas entre el proyecto anterior y el actual.</p>
+  <div class="cs-table-wrap">
+    <table class="cs-table">
+      <thead><tr><th scope="col">Qué se midió</th><th scope="col">Antes</th><th scope="col">Hoy</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Quién corre las pruebas primero</th><td>Solo Calidad, después de la entrega</td><td><strong>Desarrollo, antes de entregar</strong>, y corrige antes</td></tr>
+        <tr><th scope="row">Deuda técnica a la fecha de entrega</th><td>Referencia</td><td><strong>Menos de una décima parte</strong></td></tr>
+        <tr><th scope="row">Ciclos de prueba por ítem</th><td>Varias idas y vueltas</td><td><strong>2 pasadas</strong>, menos de la mitad</td></tr>
+        <tr><th scope="row">Defectos por entrega</th><td>Por ítem, y ninguno pasaba limpio</td><td><strong>Por bloque</strong> de varios ítems; algunos cierran sin ninguno</td></tr>
+        <tr><th scope="row">Diseño de un ítem</th><td>40 casos</td><td><strong>10 escenarios</strong> con más cobertura</td></tr>
+        <tr><th scope="row">Configuraciones por escenario</th><td>40 ejecuciones manuales, una configuración</td><td><strong>120 ejecuciones</strong>: 3 navegadores × 4 idiomas</td></tr>
+        <tr><th scope="row">Carga de casos en Azure Test Plans</th><td>Casi una hora por entregable</td><td><strong>Menos de 5 minutos</strong></td></tr>
+        <tr><th scope="row">Elaboración de la matriz de casos</th><td>4 horas</td><td><strong>1 hora</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="cs-note">El cambio de fondo es el primero: <strong>la automatización dejó de ser una herramienta de Calidad y pasó a ser del proceso</strong>. Es Shift-Left en la práctica, y la causa común del resto de las cifras.</p>
+</section>
+
+<section id="mejora-continua">
+  <div class="section-tag">// 05 · mejora continua, un caso real</div>
+  <h2 class="section-title">29 observaciones de otro equipo, un día de trabajo</h2>
+  <p class="section-sub">El método se mejora con evidencia, no por intuición. Noviembre de 2026.</p>
+  <div class="about-grid">
+    <div class="about">
+      <p><strong>La situación.</strong> El equipo de Desarrollo de uno de los productos usa nuestro kit de automatización y lo revisó a fondo: dejó <strong>29 observaciones</strong>.</p>
+      <p><strong>Qué hice.</strong> Un análisis forense de cada una, con una sola pregunta: <em>¿es un defecto de nuestro kit, que afecta a todos los proyectos, o algo propio de ese equipo?</em></p>
+      <p>Además apareció un <strong>riesgo que nadie había visto</strong>: un grupo de pruebas que podía vaciar una base compartida. Se frenó con un control automático, sin tocar las pruebas de otro equipo.</p>
+      <p><strong>Cómo se verificó.</strong> Cada corrección pasó por <strong>pruebas de mutación</strong>: se rompe el control a propósito y se exige que la batería lo detecte. Si una prueba no detecta el error que dice prevenir, no se da por buena.</p>
+    </div>
+    <div class="cs-table-wrap">
+      <table class="cs-table">
+        <thead><tr><th scope="col">Resultado</th><th scope="col">Cuántas</th><th scope="col">Qué se hizo</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Señaladas como defecto de nuestro kit</th><td>11</td><td><strong>10 eran reales y se corrigieron el mismo día</strong>, para todos los proyectos; 1 no lo era</td></tr>
+          <tr><th scope="row">Útiles solo si se resuelven en general</th><td>7</td><td>Una buena práctica de ellos <strong>se adoptó como estándar para todos</strong>; 2 más se resolvieron el mismo día y 4 quedaron planificadas</td></tr>
+          <tr><th scope="row">Propias de ese equipo</th><td>9</td><td>No se tocó el kit común</td></tr>
+          <tr><th scope="row">No se sostenían</th><td>2</td><td>Se respondieron con la evidencia</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <p class="cs-note">Una observación externa no se descarta por venir «de otro equipo» ni se acepta por cortesía: <strong>se mide, se clasifica y, si suma valor, se adopta para todos</strong>.</p>
+</section>
+
+<section id="rol">
+  <div class="section-tag">// 06 · mi rol</div>
+  <h2 class="section-title">Qué hice yo y qué hizo el equipo</h2>
+  <div class="about-highlights cs-cols">
+    <div class="highlight"><div class="h-title">Diseño y gobierno del método</div><p>Reglas, puertas de control, versiones y liberaciones.</p></div>
+    <div class="highlight"><div class="h-title">La IA como par técnico</div><p>No como atajo: propone, se verifica, una persona aprueba.</p></div>
+    <div class="highlight"><div class="h-title">Referencia técnica</div><p>Para 5 analistas en 4 productos, que trabajan con el método versionado.</p></div>
+    <div class="highlight"><div class="h-title">Un resultado de equipo</div><p>Desarrollo adoptó la automatización y los analistas, el método.</p></div>
+  </div>
+  <div class="skill-tags cs-stack">
+    <span class="tag">Playwright</span><span class="tag">TypeScript</span><span class="tag">Node.js</span><span class="tag">Claude Code</span>
+    <span class="tag">Azure DevOps</span><span class="tag">Azure Test Plans</span><span class="tag">PostgreSQL</span><span class="tag">ISTQB</span><span class="tag">Scrum · Kanban</span>
+  </div>
+  <div class="hero-cta cs-cta">
+    <a href="index.html#contacto" class="btn btn-primary">Hablemos</a>
+    <a href="index.html" class="btn btn-outline">Volver al portafolio</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Gilkeira Pereira · Quality Engineer · Lima, Perú</p>
+  <p style="margin-top: 8px;">Caso de estudio sin nombres de clientes ni datos internos.</p>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('section > *').forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+  });
+
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 70;
+        const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>

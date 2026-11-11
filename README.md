@@ -9,7 +9,10 @@ URL de `og:image` y `og:url` del `index.html`.)
 ## Estructura
 
 - `index.html` — Sitio completo (HTML + CSS + JS en un solo archivo)
-- `Gilkeira_Pereira_CV_2026_v4.pdf` — CV descargable
+- `caso-de-estudio.html` — Caso de estudio del método (página aparte, enlazada desde el menú y desde
+  «Ingeniería propia»). Lleva una **copia del bloque `<style>` de `index.html`** más su propio estilo al final
+  (marcado «Caso de estudio»): si cambia el estilo de `index.html`, copiarlo también aquí.
+- `Gilkeira_Pereira_CV_2026_v5.pdf` — CV descargable
 - `foto-gilkeira.jpg` — Retrato del hero (760×950, 78 KB).
   Fuente original: `D:\MisProyectos\gpereira.-Varios\Foto Perfil Gilkeira Pereira.jpg`
   (3064×4096). Recorte 4:5 desde arriba + resize LANCZOS + JPEG q84 progresivo.
@@ -26,7 +29,8 @@ URL de `og:image` y `og:url` del `index.html`.)
 
 Para cambiar contenido, editar `index.html` directamente. Los datos están en HTML plano, fáciles de modificar.
 
-Para actualizar el CV: reemplazar `Gilkeira_Pereira_CV_2026_v4.pdf` con la versión nueva (mantener el mismo nombre) o actualizar los links en `index.html`.
+Para actualizar el CV: reemplazar `Gilkeira_Pereira_CV_2026_v5.pdf` con la versión nueva (mantener el mismo nombre) o
+actualizar los links: 3 en `index.html` (menú, inicio y contacto) y 1 en `caso-de-estudio.html` (menú).
 
 ## Datos de los logros
 
